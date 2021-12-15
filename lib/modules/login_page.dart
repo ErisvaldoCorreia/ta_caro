@@ -13,10 +13,12 @@ class LoginPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
+          // Alinhamento central na coluna
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'assets/tacaro.png',
-              width: 200,
+              width: size.width * .5,
             ),
             InputText(
               label: "E-mail",
@@ -28,6 +30,46 @@ class LoginPage extends StatelessWidget {
             InputText(
               label: "Senha",
               hint: "Digite sua senha",
+            ),
+            SizedBox(
+              height: size.height * .07,
+            ),
+            Container(
+              height: size.height * .058,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                color: AppTheme.colors.primary,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  'Entrar',
+                  style: AppTheme.textStyles.buttonBackgroundColor,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * .03,
+            ),
+            Container(
+              height: size.height * .058,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                color: AppTheme.colors.background,
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: AppTheme.colors.border,
+                    width: 3,
+                  ),
+                ),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  'Criar conta',
+                  style: AppTheme.textStyles.buttonBoldTextColor,
+                ),
+              ),
             ),
           ],
         ),
@@ -67,7 +109,7 @@ class InputText extends StatelessWidget {
               hintStyle: AppTheme.textStyles.hint,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppTheme.colors.border),
+                borderSide: BorderSide(color: AppTheme.colors.primary),
               ),
             ),
           ),
