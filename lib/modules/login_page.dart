@@ -7,6 +7,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(40.0),
@@ -21,7 +23,7 @@ class LoginPage extends StatelessWidget {
               hint: "Digite seu E-mail",
             ),
             SizedBox(
-              height: 18,
+              height: size.height * .02,
             ),
             InputText(
               label: "Senha",
@@ -45,20 +47,22 @@ class InputText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(label).label,
           SizedBox(
-            height: 12,
+            height: size.height * .012,
           ),
           TextFormField(
             style: AppTheme.textStyles.input,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(left: 16),
+              contentPadding: EdgeInsets.only(left: 16.0),
               hintText: hint,
               hintStyle: AppTheme.textStyles.hint,
               border: OutlineInputBorder(
