@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/modules/login_page.dart';
 import '/modules/splash_page.dart';
 
 class App extends StatelessWidget {
@@ -11,10 +12,10 @@ class App extends StatelessWidget {
       title: 'TaCaroApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
-      initialRoute: '/splash',
+      initialRoute: '/login',
       routes: {
         '/splash': (context) => SplashPage(),
-        '/login': (context) => Container(),
+        '/login': (context) => LoginPage(),
       },
     );
   }
