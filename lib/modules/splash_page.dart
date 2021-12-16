@@ -7,6 +7,10 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Funcao temp para navegacao e teste de load splash
+    Future.delayed(Duration(seconds: 5))
+        .then((value) => {Navigator.pushNamed(context, '/login')});
+
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
       body: Center(

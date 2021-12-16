@@ -34,44 +34,91 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: size.height * .07,
             ),
-            Container(
-              height: size.height * .058,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: AppTheme.colors.primary,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Entrar',
-                  style: AppTheme.textStyles.buttonBackgroundColor,
-                ),
-              ),
+            Button(
+              label: 'Entrar',
             ),
             SizedBox(
               height: size.height * .03,
             ),
-            Container(
-              height: size.height * .058,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                color: AppTheme.colors.background,
-                border: Border.fromBorderSide(
-                  BorderSide(
-                    color: AppTheme.colors.border,
-                    width: 3,
-                  ),
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Criar conta',
-                  style: AppTheme.textStyles.buttonBoldTextColor,
-                ),
-              ),
+            Button(
+              label: 'Criar Conta',
+              type: ButtonType.outline,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+enum ButtonType { fill, outline, none }
+
+class Button extends StatelessWidget {
+  final String label;
+  final ButtonType type;
+
+  const Button({
+    Key? key,
+    required this.label,
+    this.type = ButtonType.fill,
+  }) : super(key: key);
+
+  TextStyle get textStyle {
+    switch (type) {
+      case ButtonType.fill:
+        return AppTheme.textStyles.buttonBackgroundColor;
+      case ButtonType.outline:
+        return AppTheme.textStyles.buttonBoldTextColor;
+      case ButtonType.none:
+        return AppTheme.textStyles.buttonTextColor;
+      default:
+        throw 'Button Type Invalid';
+    }
+  }
+
+  BoxDecoration get boxDecoration {
+    switch (type) {
+      case ButtonType.fill:
+        return BoxDecoration(
+          color: AppTheme.colors.primary,
+          borderRadius: BorderRadius.circular(10),
+        );
+      case ButtonType.outline:
+        return BoxDecoration(
+          color: AppTheme.colors.background,
+          border: Border.fromBorderSide(
+            BorderSide(
+              color: AppTheme.colors.border,
+              width: 3,
+            ),
+          ),
+          borderRadius: BorderRadius.circular(10),
+        );
+      case ButtonType.none:
+        return BoxDecoration(
+          color: Colors.transparent,
+        );
+      default:
+        throw 'Button Type Invalid';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: () {
+        print('clicou no botao');
+      },
+      child: Container(
+        height: size.height * .058,
+        width: double.maxFinite,
+        decoration: boxDecoration,
+        child: Center(
+          child: Text(
+            label,
+            style: textStyle,
+          ),
         ),
       ),
     );
