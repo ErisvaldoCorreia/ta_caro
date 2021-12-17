@@ -5,9 +5,17 @@ import '/shared/app_theme.dart';
 class InputText extends StatelessWidget {
   final String label;
   final String hint;
+
+  final bool obscure;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+
   const InputText({
     required this.label,
     required this.hint,
+    this.obscure = false,
+    this.onChanged,
+    this.validator,
     Key? key,
   }) : super(key: key);
 
@@ -27,6 +35,9 @@ class InputText extends StatelessWidget {
           ),
           TextFormField(
             style: AppTheme.textStyles.input,
+            obscureText: obscure,
+            onChanged: onChanged,
+            validator: validator,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 16.0),
               hintText: hint,

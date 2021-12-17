@@ -31,6 +31,7 @@ dependencies:
 
   # Packages to project
   google_fonts:
+  validators: ^3.0.0
   # End Packages
 
 dev_dependencies:

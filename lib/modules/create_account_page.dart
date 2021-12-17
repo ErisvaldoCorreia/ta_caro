@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 import '/components/button_widget.dart';
 import '/components/input_widget.dart';
@@ -41,11 +42,14 @@ class CreateAccountPage extends StatelessWidget {
             InputText(
               label: "E-mail",
               hint: "Digite seu E-mail",
+              validator: (value) =>
+                  isEmail(value ?? '') ? null : 'Digite um e-mail válido',
             ),
             SizedBox(height: size.height * .02),
             InputText(
               label: "Senha",
-              hint: "Digite sua senha",
+              hint: "Crie sua senha",
+              obscure: true,
             ),
             SizedBox(height: size.height * .07),
             Button(

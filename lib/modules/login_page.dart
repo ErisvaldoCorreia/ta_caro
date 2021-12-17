@@ -31,6 +31,7 @@ class LoginPage extends StatelessWidget {
             InputText(
               label: "Senha",
               hint: "Digite sua senha",
+              obscure: true,
             ),
             SizedBox(height: size.height * .07),
             Button(
