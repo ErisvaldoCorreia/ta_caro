@@ -5,10 +5,12 @@ import '/shared/button_type.dart';
 class Button extends StatelessWidget {
   final String label;
   final ButtonType type;
+  final VoidCallback onPress;
 
   const Button({
     Key? key,
     required this.label,
+    required this.onPress,
     this.type = ButtonType.fill,
   }) : super(key: key);
 
@@ -16,9 +18,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: () {
-        print('clicou no botao');
-      },
+      onTap: onPress,
       child: Container(
         height: size.height * .058,
         width: double.maxFinite,

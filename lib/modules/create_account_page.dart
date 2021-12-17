@@ -12,6 +12,17 @@ class CreateAccountPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppTheme.colors.background,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: BackButton(
+            color: Colors.black,
+          ),
+        ),
+      ),
+      backgroundColor: AppTheme.colors.background,
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -39,6 +50,7 @@ class CreateAccountPage extends StatelessWidget {
             SizedBox(height: size.height * .07),
             Button(
               label: 'Criar Conta',
+              onPress: () {},
             ),
             SizedBox(height: size.height * .03),
           ],

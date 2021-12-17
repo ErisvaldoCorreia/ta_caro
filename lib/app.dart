@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       title: 'TaCaroApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
-      initialRoute: '/login/create-account',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
