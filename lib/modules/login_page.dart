@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 import '/shared/app_theme.dart';
 import '/shared/button_type.dart';
@@ -26,6 +27,8 @@ class LoginPage extends StatelessWidget {
             InputText(
               label: "E-mail",
               hint: "Digite seu E-mail",
+              validator: (value) =>
+                  isEmail(value ?? '') ? null : 'Digite um e-mail válido',
             ),
             SizedBox(height: size.height * .02),
             InputText(
