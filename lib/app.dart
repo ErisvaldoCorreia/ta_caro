@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '/modules/login_page.dart';
 import '/modules/splash_page.dart';
+import '/modules/create_account_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -12,10 +13,11 @@ class App extends StatelessWidget {
       title: 'TaCaroApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green),
-      initialRoute: '/splash',
+      initialRoute: '/login/create-account',
       routes: {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
+        '/login/create-account': (context) => CreateAccountPage(),
       },
     );
   }
