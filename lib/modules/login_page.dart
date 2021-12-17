@@ -25,22 +25,16 @@ class LoginPage extends StatelessWidget {
               label: "E-mail",
               hint: "Digite seu E-mail",
             ),
-            SizedBox(
-              height: size.height * .02,
-            ),
+            SizedBox(height: size.height * .02),
             InputText(
               label: "Senha",
               hint: "Digite sua senha",
             ),
-            SizedBox(
-              height: size.height * .07,
-            ),
+            SizedBox(height: size.height * .07),
             Button(
               label: 'Entrar',
             ),
-            SizedBox(
-              height: size.height * .03,
-            ),
+            SizedBox(height: size.height * .03),
             Button(
               label: 'Criar Conta',
               type: ButtonType.outline,
