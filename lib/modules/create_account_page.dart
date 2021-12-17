@@ -43,7 +43,7 @@ class CreateAccountPage extends StatelessWidget {
               label: "E-mail",
               hint: "Digite seu E-mail",
               validator: (value) =>
-                  isEmail(value ?? '') ? null : 'Digite um e-mail válido',
+                  isEmail(value) ? null : 'Digite um e-mail válido',
             ),
             SizedBox(height: size.height * .02),
             InputText(
