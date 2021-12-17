@@ -32,7 +32,14 @@ dependencies:
   # Packages to project
   google_fonts:
   validators: ^3.0.0
+  flutter_launcher_icons:
+  flutter_launcher_name:
   # End Packages
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icone.png"
 
 dev_dependencies:
   flutter_test:
