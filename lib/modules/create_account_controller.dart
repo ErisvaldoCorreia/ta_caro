@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-class CreateAccountController {
+import '/shared/app_state.dart';
+
+class CreateAccountController extends ChangeNotifier {
+  AppState state = AppState.empty();
+
   final formkey = GlobalKey<FormState>();
 
   String _email = '';
@@ -21,9 +25,22 @@ class CreateAccountController {
     return false;
   }
 
-  void createAccount() {
+  void update(AppState state) {
+    this.state = state;
+    notifyListeners();
+  }
+
+  Future<void> createAccount() async {
     if (validate()) {
-      print('Pode chamar o backend');
+      try {
+        update(AppState.loading());
+        //CHAMA BACKEND
+        await Future.delayed(Duration(seconds: 4));
+        //
+        update(AppState.success<String>('Usuario criado com sucesso'));
+      } catch (e) {
+        update(AppState.error('Falha ao cadastrar novo usuário'));
+      }
     }
   }
 }

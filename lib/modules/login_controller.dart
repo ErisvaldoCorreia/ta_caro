@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-class LoginController {
+import '/shared/app_state.dart';
+
+class LoginController extends ChangeNotifier {
+  AppState state = AppState.empty();
+
   final formkey = GlobalKey<FormState>();
 
   String _email = '';
@@ -19,9 +23,22 @@ class LoginController {
     return false;
   }
 
-  void login() {
+  void update(AppState state) {
+    this.state = state;
+    notifyListeners();
+  }
+
+  Future<void> login() async {
     if (validate()) {
-      print('Pode chamar o backend');
+      try {
+        update(AppState.loading());
+        //CHAMA BACKEND
+        await Future.delayed(Duration(seconds: 4));
+        //
+        update(AppState.success<String>('Usuario Logado'));
+      } catch (e) {
+        update(AppState.error('Falha no login'));
+      }
     }
   }
 }
