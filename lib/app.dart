@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/modules/login_page.dart';
 import '/modules/splash_page.dart';
 import '/modules/create_account_page.dart';
+import '/modules/home_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         '/splash': (context) => SplashPage(),
         '/login': (context) => LoginPage(),
         '/login/create-account': (context) => CreateAccountPage(),
+        '/home': (context) => HomePage()
       },
     );
   }

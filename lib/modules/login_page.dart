@@ -16,14 +16,35 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = LoginController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void navigation(routeName) {
+    Navigator.pushNamed(context, routeName);
+  }
 
   @override
   void initState() {
     controller.addListener(() {
       controller.state.when(
         loading: () => print('Loading....'),
-        error: (message, _) => print(message),
-        success: (value) => print(value),
+        // error: (message, _) =>
+        //     scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(
+        //         onClosing: () {},
+        //         builder: (context) => Container(
+        //               child: Padding(
+        //                 padding: EdgeInsets.all(40),
+        //                 child: Text(message),
+        //               ),
+        //             ))),
+        error: (message, _) => showModalBottomSheet(
+            context: context,
+            builder: (context) => Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(40),
+                    child: Text(message),
+                  ),
+                )),
+        success: (value) => navigation('/home'),
         orElse: () {},
       );
     });
@@ -41,12 +62,13 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: AppTheme.colors.background,
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         //Validar centralização de tela com singlechild
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 40),
+          //padding: EdgeInsets.only(top: 40),
           child: Form(
             key: controller.formkey,
             child: Column(
@@ -78,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                   builder: (_, __) => controller.state.when(
                     loading: () => CircularProgressIndicator(),
                     orElse: () => Button(
-                      //TODO: Refatorar botão para loading no componente
+                      //Refatorar botão para loading no componente
                       label: 'Entrar',
                       onPress: () {
                         controller.login();
@@ -91,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                   label: 'Criar Conta',
                   type: ButtonType.outline,
                   onPress: () {
-                    Navigator.pushNamed(context, '/login/create-account');
+                    navigation('/login/create-account');
                   },
                 ),
               ],

@@ -96,7 +96,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   builder: (_, __) => controller.state.when(
                     loading: () => CircularProgressIndicator(),
                     orElse: () => Button(
-                      //TODO: Refatorar botão para loading no componente
+                      //Refatorar botão para loading no componente
                       label: 'Entrar',
                       onPress: () {
                         controller.createAccount();

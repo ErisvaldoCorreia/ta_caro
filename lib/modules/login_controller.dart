@@ -34,8 +34,9 @@ class LoginController extends ChangeNotifier {
         update(AppState.loading());
         //CHAMA BACKEND
         await Future.delayed(Duration(seconds: 4));
-        //
-        update(AppState.success<String>('Usuario Logado'));
+        update(AppState.error('Falha no login'));
+        //Devolve estado logado
+        //update(AppState.success<String>('Usuario Logado'));
       } catch (e) {
         update(AppState.error('Falha no login'));
       }
