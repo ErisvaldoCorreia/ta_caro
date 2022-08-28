@@ -1,50 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
+import 'create_account_controller.dart';
+import '/components/components.dart';
 import '/shared/app_theme.dart';
-import '/shared/button_type.dart';
-import '/modules/login_controller.dart';
-import '/components/button_widget.dart';
-import '/components/input_widget.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class CreateAccountPage extends StatefulWidget {
+  const CreateAccountPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final controller = LoginController();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void navigation(routeName) {
-    Navigator.pushNamed(context, routeName);
-  }
+class _CreateAccountPageState extends State<CreateAccountPage> {
+  final controller = CreateAccountController();
 
   @override
   void initState() {
     controller.addListener(() {
       controller.state.when(
         loading: () => print('Loading....'),
-        // error: (message, _) =>
-        //     scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(
-        //         onClosing: () {},
-        //         builder: (context) => Container(
-        //               child: Padding(
-        //                 padding: EdgeInsets.all(40),
-        //                 child: Text(message),
-        //               ),
-        //             ))),
-        error: (message, _) => showModalBottomSheet(
-            context: context,
-            builder: (context) => Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(40),
-                    child: Text(message),
-                  ),
-                )),
-        success: (value) => navigation('/home'),
+        error: (message, _) => print(message),
+        success: (value) => print(value),
         orElse: () {},
       );
     });
@@ -62,22 +39,39 @@ class _LoginPageState extends State<LoginPage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: AppTheme.colors.background,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: BackButton(
+            color: Colors.black,
+          ),
+        ),
+      ),
       backgroundColor: AppTheme.colors.background,
       body: Padding(
         padding: const EdgeInsets.all(40.0),
-        //Validar centralização de tela com singlechild
         child: SingleChildScrollView(
-          //padding: EdgeInsets.only(top: 40),
+          padding: EdgeInsets.only(top: 40),
           child: Form(
             key: controller.formkey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  'assets/tacaro.png',
-                  width: size.width * .5,
+                Text('Crie sua conta!').title,
+                SizedBox(height: size.height * .01),
+                Text('Mantenha suas contas em dia').subtitle,
+                SizedBox(height: size.height * .05),
+                InputText(
+                  label: "Nome",
+                  hint: "Digite seu nome completo",
+                  validator: (value) =>
+                      value.isNotEmpty ? null : 'Informe o nome completo',
+                  onChanged: (value) => controller.onChanged(name: value),
                 ),
+                SizedBox(height: size.height * .02),
                 InputText(
                   label: "E-mail",
                   hint: "Digite seu E-mail",
@@ -88,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: size.height * .02),
                 InputText(
                     label: "Senha",
-                    hint: "Digite sua senha",
+                    hint: "Crie sua senha",
                     obscure: true,
                     onChanged: (value) => controller.onChanged(password: value),
                     validator: (value) => value.length >= 6
@@ -101,21 +95,14 @@ class _LoginPageState extends State<LoginPage> {
                     loading: () => CircularProgressIndicator(),
                     orElse: () => Button(
                       //Refatorar botão para loading no componente
-                      label: 'Entrar',
+                      label: 'Cadastrar',
                       onPress: () {
-                        controller.login();
+                        controller.createAccount();
                       },
                     ),
                   ),
                 ),
                 SizedBox(height: size.height * .03),
-                Button(
-                  label: 'Criar Conta',
-                  type: ButtonType.outline,
-                  onPress: () {
-                    navigation('/login/create-account');
-                  },
-                ),
               ],
             ),
           ),

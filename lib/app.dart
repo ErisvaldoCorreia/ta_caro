@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/modules/login_page.dart';
-import '/modules/splash_page.dart';
-import '/modules/create_account_page.dart';
-import '/modules/home_page.dart';
+import 'modules/modules.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
